@@ -22,24 +22,19 @@ document.querySelector('#api-cats').addEventListener('click', getCats);
 function addCat() {
 
   for (let i = 0; i < arr.length; i++) {
-      if ('content' in document.createElement('template')) {
+    let t = document.querySelector('#temp');
+    let tb = document.querySelector(".grid");
+    let clone = document.importNode(t.content, true);
 
-        var t = document.querySelector('#temp');
-
-        var tb = document.querySelector(".grid");
-
-        var clone = document.importNode(t.content, true);
-
-        clone.querySelector('.cat__price').textContent = `${arr[i].price}`;
-
-        clone.getElementById('cat__image').src = `${arr[i].src}`;
-
-      }
-
-      tb.appendChild(clone);
+    if ('content' in document.createElement('template')) {
+      clone.querySelector('.cat__price').textContent = `${arr[i].price}`;
+      clone.getElementById('cat__image').src = `${arr[i].src}`;
     }
 
+    tb.appendChild(clone);
   }
+
+}
 
 
 function getCats() {
@@ -56,7 +51,7 @@ function getCats() {
     obj.cats.forEach(function (cat) {
       let image = cat.img_url;
       let price = cat.price;
-      console.log(image, price);
+      // console.log(image, price);
 
       let t = document.querySelector('#temp');
       let tb = document.querySelector(".grid");
